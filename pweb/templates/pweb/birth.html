@@ -120,22 +120,35 @@
 #more {display: none;}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 </style>
 <center>
     <div class="container c6">
-        <button type="button" style="margin:auto;display:block" class="button  btn5 btn-success my-3"
-                data-toggle="modal" data-target="#Modal"
+        <button class="button  btn5 btn-success my-3" data-target="#Modal" data-toggle="modal"
+                style="margin:auto;display:block" type="button"
         >
             <span> Click Here to submit your Birth Information </span>
         </button>
     </div>
 </center>
-<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+<div aria-hidden="true" aria-labelledby="ModalLabel" class="modal fade" id="Modal" role="dialog" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="ModalLabel">Enter Your Birth Information Here</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -144,45 +157,45 @@
                 {% csrf_token %}
                 <div class="form-group mx-2 my-3">
                     <label for="name">Name</label>
-                    <input type="text" id="name" name='name' placeholder="Write Your First Name" required>
+                    <input id="name" name='name' placeholder="Write Your First Name" required type="text">
                 </div>
 
                 <div class="form-group mx-2 my-3">
                     <label for="phone">Phone</label>
-                    <input type="number" id="phone" name='phone' placeholder="Write Your Phone Number" required>
+                    <input id="phone" name='phone' placeholder="Write Your Phone Number" required type="number">
                 </div>
 
                 <div class="form-group mx-2 my-3">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name='email' placeholder="name@example.com" required>
+                    <input id="email" name='email' placeholder="name@example.com" required type="email">
                 </div>
                 <div class="form-group mx-2 my-3">
                     <label>Gender:</label>
-                    <input type="radio"
-                           name="gender"
+                    <input checked="checked"
                            id="mgender"
-                           checked="checked"/>
+                           name="gender"
+                           type="radio"/>
                     <label for="mgender">Male</label>
 
-                    <input type="radio"
+                    <input id="fgender"
                            name="gender"
-                           id="fgender" required/>
+                           required type="radio"/>
                     <label for="fgender">Female</label>
 
-                    <input type="radio"
+                    <input id="ogender"
                            name="gender"
-                           id="ogender" required />
+                           required type="radio"/>
                     <label for="ogender">Others</label>
                 </div>
                 <div class="form-group mx-2 my-3">
 
                     <label for="dob">Date of Birth</label>
-                    <input type="datetime-local" name='dob' class="dob" id="dob" required>
+                    <input class="dob" id="dob" name='dob' required type="datetime-local">
                 </div>
                 <div class="form-group mx-2 my-3">
 
                     <label for="district">Choose Your Birth District</label>
-                    <select name="district" id="district" required>
+                    <select id="district" name="district" required>
                         <option value="">--Select District--</option>
                         <option value="Taplejung">Taplejung</option>
                         <option value="Panchthar">Panchthar</option>
@@ -279,7 +292,7 @@
                 </div>
                 <div class="form-group mx-2 my-3">
                     <label for="pro">Choose Your Birth Province </label>
-                    <select name="pro" id="pro" required>
+                    <select id="pro" name="pro" required>
                         <option value="">--Select province--</option>
                         <option value="">Province-1</option>
                         <option value="">Province-2</option>
@@ -303,13 +316,26 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
                     </style>
-                    <textarea class="formfield" id="desc" rows="3"
-                              name="desc" placeholder="--Write Your Quires Clearly--"></textarea>
+                    <textarea class="formfield" id="desc" name="desc"
+                              placeholder="--Write Your Quires Clearly--" rows="3"></textarea>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button class="btn btn-primary" type="submit">Submit</button>
                 </div>
             </form>
         </div>
@@ -336,11 +362,24 @@ $('Modal').on('show.bs.modal', function (event) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
 
 <center>
     <div class="container c6">
-        <button type="button" class="button  btn5 btn-success my-3" data-toggle="modal" data-target="#Modal1">
+        <button class="button  btn5 btn-success my-3" data-target="#Modal1" data-toggle="modal" type="button">
             <span> Click Here to submit your palm picture</span>
         </button>
     </div>
@@ -348,49 +387,49 @@ $('Modal').on('show.bs.modal', function (event) {
 
 
 <!-- Modal -->
-<div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+<div aria-hidden="true" aria-labelledby="ModalLabel" class="modal fade" id="Modal1" role="dialog" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="ModalLabel1">Upload Your Palm Pictures </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{% url 'images' %}" method="POST" enctype="multipart/form-data">
+            <form action="{% url 'images' %}" enctype="multipart/form-data" method="POST">
                 {% csrf_token %}
                 <div class="modal-body">
                     <div class="form-group mx-2 my-3">
                         <label for="name">Name</label>
-                        <input type="text" id="name_u" name='name_u' placeholder="Write Your First Name" required>
+                        <input id="name_u" name='name_u' placeholder="Write Your First Name" required type="text">
                     </div>
 
                     <div class="form-group mx-2 my-3">
                         <label for="phone">Phone</label>
-                        <input type="number" id="phone_u" name='phone_u' placeholder="Write Your Phone Number" required>
+                        <input id="phone_u" name='phone_u' placeholder="Write Your Phone Number" required type="number">
                     </div>
 
                     <div class="form-group mx-2 my-3">
                         <label for="email">Email</label>
-                        <input type="email" id="email_u" name='email_u' placeholder="name@example.com" required>
+                        <input id="email_u" name='email_u' placeholder="name@example.com" required type="email">
                     </div>
                     <div class="form-group mx-2 my-3">
                         <label for="avatar">Upload Your right palm picture:</label>
 
-                        <input type="file"
-                               id="avatar" name="picture1" multiple
-                               accept="image/jpeg, image/svg,image/png, image/jpg" required>
+                        <input accept="image/jpeg, image/svg,image/png, image/jpg"
+                               id="avatar" multiple name="picture1"
+                               required type="file">
                         <div class="my-3">
 
                             <label for="avatar1">Upload Your left palm picture:</label>
 
-                            <input type="file"
-                                   id="avatar1" name="picture" multiple
-                                   accept="image/jpeg, image/svg,image/png, image/jpg" required>
+                            <input accept="image/jpeg, image/svg,image/png, image/jpg"
+                                   id="avatar1" multiple name="picture"
+                                   required type="file">
                         </div>
                         <div class="form-group my-3">
                             <label for="dob">Date of upload picture</label>
-                            <input type="datetime-local" name='dou' class="dob" id="dob1" required>
+                            <input class="dob" id="dob1" name='dou' required type="datetime-local">
                         </div>
                     </div>
 
@@ -404,14 +443,27 @@ $('Modal').on('show.bs.modal', function (event) {
                              vertical-align: middle;
                              }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
                     </style>
-                    <textarea class="formfield" id="desc1" rows="3"
-                              name="desc1" placeholder="--Write Your Quires Clearly--"></textarea>
+                    <textarea class="formfield" id="desc1" name="desc1"
+                              placeholder="--Write Your Quires Clearly--" rows="3"></textarea>
 
                 </div>
 
                 <div class="modal-footer">
-                    <button type="submit" style="margin:auto;display:block" class="btn btn-success">Submit</button>
+                    <button class="btn btn-success" style="margin:auto;display:block" type="submit">Submit</button>
                 </div>
             </form>
 
@@ -419,75 +471,109 @@ $('Modal').on('show.bs.modal', function (event) {
     </div>
 </div>
 <!--</form>-->
+<style>
+div.d {
+              text-align: justify;
+              text-justify: inter-word;
+            }
 
+
+</style>
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
     <div class="container">
         <h2 class="display-5">Astrology and Palmistry</h2>
-        <p>
-            Astrology is a stduy of nine planets. Palmistry is a practice common to many different places on
-            the
-            Eurasian landmass;[4] it has been practised in the cultures of India, Nepal, Tibet, China,
-            Persia,
-            Sumeria, Palestine and Babylonia. <span id="dots">...</span> <span id="more">
+        <div class="d">
+            <p>
+                Astrology started with the yearning of
+                astrologers over the centuries to associate terrestrial location with the
+                qualities of zodiacal signs. The first known efforts at this can be traced
+                back to Babylonian and Assyrian tablets. 1
+                The first known classical attempt, ascribing zodiacal rulerships to
+                nations, is found in Marcus Manilius' work, Astronomica, written around
+                the beginning of the Christian era. An early attempt that survives was by
+                Claudius Ptolemy in the first to second centuries AD and published in his
+                work Tetrabiblos? Muslim astrologers of the ninth to twelfth centuries
+                added to these attempts, most notably Al Biruni, writing in 1029. Medieval
+                astrologers followed, most borrowing heavily from the work of Ptolemy.
+                Of note was the work of William Lilly who published in 1647. Further
+                lists were produced by Raphael, Green, Sepharial and Charles Carter,
+                each adding their insights to the correlation of zodiacal qualities with
+                locations on Earth. <span id="dots">...</span> <span id="more">Human personality is infinitely intricate,
+            and delineating the
+            various aspects of a native's life from a horoscope is a complex
+            task. What is required is that we choose the right Astrological
+            System that helps us to generate the different horoscopes of
+            individuals born with very little time difference, and provide us
+            with the means of clearly analysing what is promised for various
+            aspects of the lives, of individuals born with a time difference of
+            say only a few seconds. And The main reason a person would have a palm reading is for guidance and support,
+            yet anxiety can creep in. A person wants to hear good news yet may feel apprehensive in case they are told
+            something they do not want to hear. The palm reader and client need to work together in order to establish
+            the confidence and trust necessary in the reading. It is important to find a good balance between the
+            positives and negatives in a person’s hand.</span>
 
-                    The acupuncturist Yoshiaki Omura describes its roots in Hindu astrology (known in Sanskrit as
-                    jyotish),
-                    Chinese Yijing (I Ching), and Roma fortune tellers.[5] Several thousand years ago, the Hindu sage
-                    Valmiki is thought[6] to have written a book comprising 567 stanzas, the title of which translates
-                    in
-                    English as The Teachings of Valmiki Maharshi on Male Palmistry.[6][7] From India, the art of
-                    palmistry
-                    spread to China, Tibet, Egypt, Persia and to other countries in Europe.[5][8]
 
-                    From India, palmistry progressed to Greece where Anaxagoras practiced it.[5] Aristotle (384–322
-                    B.C.E.)
-                    discovered a treatise on the subject of palmistry on an altar of Hermes, which he then presented to
-                    Alexander the Great (356–323 B.C.E.), who took great interest in examining the character of his
-                    officers
-                    by analyzing the lines on their hands.[9]
+            </p>
 
-                    During the Middle Ages the art of palmistry was actively suppressed by the Catholic Church as pagan
-                    superstition. In Renaissance magic, palmistry (known as "chiromancy") was classified as one of the
-                    seven
-                    "forbidden arts", along with necromancy, geomancy, aeromancy, pyromancy, hydromancy, and
-                    spatulamancy
-                    (scapulimancy).[10]
-
-        </p>
-        <p>
-            <button onclick="myFunction()" class="btn btn-success" id="myBtn">Read More &raquo;</button>
+            <p>
+                <button class="btn btn-success" id="myBtn" onclick="myFunction()">Read More &raquo;</button>
+        </div>
 
 
         </p>
     </div>
 </div>
+<style>
+ div.text {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+
+
+</style>
 
 <div class="container">
     <!-- Example row of columns -->
     <div class="row">
         <div class="col-md-4">
             <h3> My Thoughts About Astrology</h3>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo,
-                tortor
-                mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-                magna
-                mollis euismod. Donec sed odio dui. </p>
+            <div class="text">
+                <p>Astrology is not only a readings of planets but also a way of living. Human can lies but astrology
+                    not.
+                    In an organizations there should be a astrologer to predict the planets,<i>grahas and dashas</i>.It
+                    is a
+                    deep down ocean to dive,more drown more interesting.</p>
+            </div>
 
         </div>
-        <div class="col-md-4">
+        <style>
+             div.a {
+              text-align: justify;
+              text-justify: inter-word;
+            }
+
+        </style>
+
+        <div class=" container-fluid col-md-4">
             <h3> My Thoughts About Palmistry</h3>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo,
-                tortor
-                mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-                magna
-                mollis euismod. Donec sed odio dui. </p>
+            <div class="a">
+                <p>Palmistry is not only a readings of lines and planets of hands but also a way of studying human
+                    nature.
+                    In anorganizations there should be a palmist to predict the nature of <i>employees and other
+                        staff</i>
+                    to know nature and treat them according to their nature and also know the way of treating them and
+                    motivating
+                    them </p>
+            </div>
 
         </div>
 
     </div>
+</div>
 
-    <hr>
+<hr>
 
 
 </div> <!-- /container -->
@@ -496,13 +582,26 @@ $('Modal').on('show.bs.modal', function (event) {
 <div class="container">
 
     <style>
- .fb_iframe_widget {overflow: hidden;}
-div.fb-comments.fb_iframe_widget span {margin-bottom: -45px;}
+         .fb_iframe_widget {overflow: hidden;}
+        div.fb-comments.fb_iframe_widget span {margin-bottom: -45px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     </style>
     <p><b> How you feel about my Perdiction,Leave reviews here. </b></p>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0"
-            nonce="COvqo6YB"></script>
+    <script async crossorigin="anonymous" defer nonce="COvqo6YB"
+            src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0"></script>
     <div class="fb-comments" data-href="http://127.0.0.1:8000/pweb/birth/" data-numposts="5" data-width=""></div>
 </div>
 <script>
@@ -522,6 +621,13 @@ div.fb-comments.fb_iframe_widget span {margin-bottom: -45px;}
     moreText.style.display = "inline";
   }
 }
+
+
+
+
+
+
+
 
 </script>
 
