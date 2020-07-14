@@ -1,0 +1,532 @@
+{% extends 'pweb/nav.html' %}
+{% block title %} Birth Chart Submission {% endblock %}
+
+{% block content %}
+
+<style>
+<!--*,*::before,*::after{-->
+<!--			padding: 0;-->
+<!--			margin: 0;-->
+<!--		}-->
+<!--		.container:not(.c1){-->
+<!--			width: 100vw;-->
+<!--			height: 295px;-->
+<!--			position: relative;-->
+<!--		}-->
+<!--		.c1{-->
+<!--			background-color: #F06060;-->
+<!--			text-align: center;-->
+<!--			width: 100vw;-->
+<!--			position: relative;-->
+<!--			padding: 50px 0;-->
+<!--		}-->
+
+<!--		.c6{-->
+<!--			background-color: #FFFFFF;-->
+<!--		}-->
+
+
+<!--		.c1>span{-->
+<!--			display: block;-->
+<!--			font-family: 'Poppins',sans-serif;-->
+<!--		}-->
+<!--		.subheading{-->
+<!--			font-size: 35px;-->
+<!--			font-weight: 600;-->
+<!--			letter-spacing: 2px;-->
+<!--			text-transform: uppercase;-->
+<!--			color: rgba(255,255,255,0.6);-->
+<!--		}-->
+<!--		.heading{-->
+<!--			font-size: 20px;-->
+<!--			font-weight: 500;-->
+<!--			margin-top: 10px;-->
+<!--			letter-spacing: 1px;-->
+<!--			color: white;-->
+<!--		}-->
+<!--		/*Basic Styling of Button*/-->
+<!--		.button{-->
+<!--			height: 80px;-->
+<!--			width: 600px;-->
+<!--			color: white;-->
+<!--			transition: 0.5s;-->
+<!--			border:4px solid white;-->
+<!--			cursor: pointer;-->
+<!--			position: absolute;-->
+<!--			margin: auto;-->
+<!--			left: 0;-->
+<!--			right: 0;-->
+<!--			top: 0;-->
+<!--			bottom: 0;-->
+<!--		}-->
+<!--		.button>span{-->
+<!--			position: absolute;-->
+<!--			transform: translate(-50%,-50%);-->
+<!--			top:50%;-->
+<!--			left: 50%;-->
+<!--			font-size: 25px;-->
+<!--			font-family: 'Poppins',sans-serif;-->
+<!--			font-weight: 600;-->
+<!--			letter-spacing: 1px;-->
+<!--		}-->
+
+
+
+
+
+<!--		/* Slide In Button Effect*/-->
+<!--		.btn5{-->
+<!--			z-index: 2;-->
+<!--			overflow: hidden;-->
+<!--		}-->
+<!--		.btn5:before{-->
+<!--			content: "";-->
+<!--			position: absolute;-->
+<!--			height: 80px;-->
+<!--			background-color: white;-->
+<!--			width: 100px;-->
+<!--			left:-104px;-->
+<!--			border-left: 4px solid white;-->
+<!--			transition: 0.5s;-->
+<!--		}-->
+<!--		.btn5:after{-->
+<!--			content: "";-->
+<!--			position: absolute;-->
+<!--			height: 80px;-->
+<!--			background-color: white;-->
+<!--			width: 100px;-->
+<!--			right: -104px;-->
+<!--			border-right: 4px solid white;-->
+<!--			transition: 0.2s;-->
+<!--			z-index: -1;-->
+<!--		}-->
+<!--		.btn5:hover{-->
+<!--			color:#FFFFFF;-->
+<!--		}-->
+<!--		.btn5:hover:before{-->
+<!--			left:0;-->
+<!--		}-->
+<!--		.btn5:hover:after{-->
+<!--			right:0;-->
+<!--		}-->
+
+.modal {
+  background-color:black;
+  body{
+  color: #721c24 ;
+  }
+}
+
+#more {display: none;}
+
+
+</style>
+<center>
+    <div class="container c6">
+        <button type="button" style="margin:auto;display:block" class="button  btn5 btn-success my-3"
+                data-toggle="modal" data-target="#Modal"
+        >
+            <span> Click Here to submit your Birth Information </span>
+        </button>
+    </div>
+</center>
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabel">Enter Your Birth Information Here</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form action="{% url 'client' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group mx-2 my-3">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name='name' placeholder="Write Your First Name" required>
+                </div>
+
+                <div class="form-group mx-2 my-3">
+                    <label for="phone">Phone</label>
+                    <input type="number" id="phone" name='phone' placeholder="Write Your Phone Number" required>
+                </div>
+
+                <div class="form-group mx-2 my-3">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name='email' placeholder="name@example.com" required>
+                </div>
+                <div class="form-group mx-2 my-3">
+                    <label>Gender:</label>
+                    <input type="radio"
+                           name="gender"
+                           id="mgender"
+                           checked="checked"/>
+                    <label for="mgender">Male</label>
+
+                    <input type="radio"
+                           name="gender"
+                           id="fgender" required/>
+                    <label for="fgender">Female</label>
+
+                    <input type="radio"
+                           name="gender"
+                           id="ogender" required />
+                    <label for="ogender">Others</label>
+                </div>
+                <div class="form-group mx-2 my-3">
+
+                    <label for="dob">Date of Birth</label>
+                    <input type="datetime-local" name='dob' class="dob" id="dob" required>
+                </div>
+                <div class="form-group mx-2 my-3">
+
+                    <label for="district">Choose Your Birth District</label>
+                    <select name="district" id="district" required>
+                        <option value="">--Select District--</option>
+                        <option value="Taplejung">Taplejung</option>
+                        <option value="Panchthar">Panchthar</option>
+                        <option value="Ilam">Ilam</option>
+                        <option value="Jhapa">Jhapa</option>
+
+                        <option value="Morang">Morang</option>
+                        <option value="Sunsari">Sunsari</option>
+                        <option value="Dhankhuta">Dhankhuta</option>
+                        <option value="Sankhuwasabha">Sankhuwasabha</option>
+                        <option value="Bhojpur">Bhojpur</option>
+                        <option value="Terhathum">Terhathum</option>
+
+                        <option value="Okhaldunga">Okhaldunga</option>
+                        <option value="Khotang">Khotang</option>
+                        <option value="Solukhaumbu">Solukhaumbu</option>
+                        <option value="Udayapur">Udayapur</option>
+                        <option value="Saptari">Saptari</option>
+                        <option value="Siraha">Siraha</option>
+
+                        <option value="Dhanusa">Dhanusa</option>
+                        <option value="Mahottari">Mahottari</option>
+                        <option value="Sarlahi">Sarlahi</option>
+                        <option value="Sindhuli">Sindhuli</option>
+                        <option value="Ramechhap">Ramechhap</option>
+                        <option value="Dolkaha">Dolkaha</option>
+
+                        <option value="Sindhupalchowk">Sindhupalchowk</option>
+                        <option value="Kavreplanchowk">Kavreplanchowk</option>
+                        <option value="Lalitpur">Lalitpur</option>
+                        <option value="Bhaktapur">Bhaktapur</option>
+                        <option value="Kathmandu">Kathmandu</option>
+                        <option value="Nuwakot">Nuwakot</option>
+                        <option value="Rasuwa">Rasuwa</option>
+                        <option value="Dhading">Dhading</option>
+
+                        <option value="Makwanpur">Makwanpur</option>
+                        <option value="Rautahat">Rautahat</option>
+                        <option value="Bara">Bara</option>
+                        <option value="Parsa">Parsa</option>
+                        <option value="Chitwan">Chitwan</option>
+
+                        <option value="Gorkha">Gorkha</option>
+                        <option value="Lamjung">Lamjung</option>
+
+                        <option value="Tanahun">Tanahun</option>
+                        <option value="Syangja">Syangja</option>
+                        <option value="Kaski">Kaski</option>
+                        <option value="Manang">Manang</option>
+
+                        <option value="Mustang">Mustang</option>
+                        <option value="Parvat">Parvat</option>
+                        <option value="Myagdi">Myagdi</option>
+
+                        <option value="Baglung">Baglung</option>
+
+                        <option value="Gulmi">Gulmi</option>
+                        <option value="Palpa">Palpa</option>
+                        <option value="Nawalparasi">Nawalparasi</option>
+                        <option value="Rupandehi">Rupandehi</option>
+                        <option value="Arghakhanchi">Arghakhanchi</option>
+                        <option value="Kapilvastu">Kapilvastu</option>
+
+                        <option value="Pyuthan">Pyuthan</option>
+                        <option value="Rolpa">Rolpa</option>
+                        <option value="Rukum">Rukum</option>
+                        <option value="Salyan">Salyan</option>
+                        <option value="Dang">Dang</option>
+
+                        <option value="Bardiya">Bardiya</option>
+                        <option value="Surkhet">Surkhet</option>
+                        <option value="Dailekh">Dailekh</option>
+                        <option value="Banke">Banke</option>
+                        <option value="Jajarkot">Jajarkot</option>
+
+                        <option value="Dolpa">Dolpa</option>
+                        <option value="Humla">Humla</option>
+                        <option value="Kalikot">Kalikot</option>
+                        <option value="Mugu">Mugu</option>
+                        <option value="Jumla">Jumla</option>
+
+                        <option value="Bajura">Bajura</option>
+                        <option value="Bajhang">Bajhang</option>
+                        <option value="Achham">Achham</option>
+                        <option value="Doti">Doti</option>
+                        <option value="Kailali">Kailali</option>
+
+                        <option value="Kanchanpur">Kanchanpur</option>
+                        <option value="Dadeldhura">Dadeldhura</option>
+                        <option value="Baitadi">Baitadi</option>
+                        <option value="Darchula">Darchula</option>
+                    </select>
+
+                </div>
+                <div class="form-group mx-2 my-3">
+                    <label for="pro">Choose Your Birth Province </label>
+                    <select name="pro" id="pro" required>
+                        <option value="">--Select province--</option>
+                        <option value="">Province-1</option>
+                        <option value="">Province-2</option>
+                        <option value="">Province-3</option>
+                        <option value="">Province-4</option>
+                        <option value="">Province-5</option>
+                        <option value="">Province-6</option>
+                        <option value="">Province-7</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group mx-2 my-3">
+                    <label for="desc">Write Quires Here</label>
+                    <style>
+                             .formfield {
+                             vertical-align: middle;
+                             }
+
+
+
+
+
+                    </style>
+                    <textarea class="formfield" id="desc" rows="3"
+                              name="desc" placeholder="--Write Your Quires Clearly--"></textarea>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+$('Modal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget)
+  var recipient = button.data('whatever')
+
+  var modal = $(this)
+  modal.find('.modal-title').text('New message to ' + recipient)
+  modal.find('.modal-body input').val(recipient)
+
+});
+
+
+
+
+
+
+
+
+
+
+</script>
+
+<center>
+    <div class="container c6">
+        <button type="button" class="button  btn5 btn-success my-3" data-toggle="modal" data-target="#Modal1">
+            <span> Click Here to submit your palm picture</span>
+        </button>
+    </div>
+</center>
+
+
+<!-- Modal -->
+<div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabel1">Upload Your Palm Pictures </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{% url 'images' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="form-group mx-2 my-3">
+                        <label for="name">Name</label>
+                        <input type="text" id="name_u" name='name_u' placeholder="Write Your First Name" required>
+                    </div>
+
+                    <div class="form-group mx-2 my-3">
+                        <label for="phone">Phone</label>
+                        <input type="number" id="phone_u" name='phone_u' placeholder="Write Your Phone Number" required>
+                    </div>
+
+                    <div class="form-group mx-2 my-3">
+                        <label for="email">Email</label>
+                        <input type="email" id="email_u" name='email_u' placeholder="name@example.com" required>
+                    </div>
+                    <div class="form-group mx-2 my-3">
+                        <label for="avatar">Upload Your right palm picture:</label>
+
+                        <input type="file"
+                               id="avatar" name="picture1" multiple
+                               accept="image/jpeg, image/svg,image/png, image/jpg" required>
+                        <div class="my-3">
+
+                            <label for="avatar1">Upload Your left palm picture:</label>
+
+                            <input type="file"
+                                   id="avatar1" name="picture" multiple
+                                   accept="image/jpeg, image/svg,image/png, image/jpg" required>
+                        </div>
+                        <div class="form-group my-3">
+                            <label for="dob">Date of upload picture</label>
+                            <input type="datetime-local" name='dou' class="dob" id="dob1" required>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="form-group mx-4 my-3">
+                    <label for="desc">Write Quires Here</label>
+                    <style>
+                             .formfield {
+                             vertical-align: middle;
+                             }
+
+                    </style>
+                    <textarea class="formfield" id="desc1" rows="3"
+                              name="desc1" placeholder="--Write Your Quires Clearly--"></textarea>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" style="margin:auto;display:block" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<!--</form>-->
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+    <div class="container">
+        <h2 class="display-5">Astrology and Palmistry</h2>
+        <p>
+            Astrology is a stduy of nine planets. Palmistry is a practice common to many different places on
+            the
+            Eurasian landmass;[4] it has been practised in the cultures of India, Nepal, Tibet, China,
+            Persia,
+            Sumeria, Palestine and Babylonia. <span id="dots">...</span> <span id="more">
+
+                    The acupuncturist Yoshiaki Omura describes its roots in Hindu astrology (known in Sanskrit as
+                    jyotish),
+                    Chinese Yijing (I Ching), and Roma fortune tellers.[5] Several thousand years ago, the Hindu sage
+                    Valmiki is thought[6] to have written a book comprising 567 stanzas, the title of which translates
+                    in
+                    English as The Teachings of Valmiki Maharshi on Male Palmistry.[6][7] From India, the art of
+                    palmistry
+                    spread to China, Tibet, Egypt, Persia and to other countries in Europe.[5][8]
+
+                    From India, palmistry progressed to Greece where Anaxagoras practiced it.[5] Aristotle (384–322
+                    B.C.E.)
+                    discovered a treatise on the subject of palmistry on an altar of Hermes, which he then presented to
+                    Alexander the Great (356–323 B.C.E.), who took great interest in examining the character of his
+                    officers
+                    by analyzing the lines on their hands.[9]
+
+                    During the Middle Ages the art of palmistry was actively suppressed by the Catholic Church as pagan
+                    superstition. In Renaissance magic, palmistry (known as "chiromancy") was classified as one of the
+                    seven
+                    "forbidden arts", along with necromancy, geomancy, aeromancy, pyromancy, hydromancy, and
+                    spatulamancy
+                    (scapulimancy).[10]
+
+        </p>
+        <p>
+            <button onclick="myFunction()" class="btn btn-success" id="myBtn">Read More &raquo;</button>
+
+
+        </p>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="col-md-4">
+            <h3> My Thoughts About Astrology</h3>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo,
+                tortor
+                mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
+                magna
+                mollis euismod. Donec sed odio dui. </p>
+
+        </div>
+        <div class="col-md-4">
+            <h3> My Thoughts About Palmistry</h3>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo,
+                tortor
+                mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
+                magna
+                mollis euismod. Donec sed odio dui. </p>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+
+</div> <!-- /container -->
+
+</main>
+<div class="container">
+
+    <style>
+ .fb_iframe_widget {overflow: hidden;}
+div.fb-comments.fb_iframe_widget span {margin-bottom: -45px;}
+
+    </style>
+    <p><b> How you feel about my Perdiction,Leave reviews here. </b></p>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0"
+            nonce="COvqo6YB"></script>
+    <div class="fb-comments" data-href="http://127.0.0.1:8000/pweb/birth/" data-numposts="5" data-width=""></div>
+</div>
+<script>
+
+     function myFunction() {
+  var dots = document.getElementById("dots");
+  var moreText = document.getElementById("more");
+  var btnText = document.getElementById("myBtn");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = "Read more";
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "Read less";
+    moreText.style.display = "inline";
+  }
+}
+
+</script>
+
+
+{% endblock %}
+
+
+

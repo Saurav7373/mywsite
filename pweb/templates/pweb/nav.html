@@ -1,0 +1,231 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en" xmlns:list-style="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Saurav Neupane</title></head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- <a class="navbar-brand" href="#">Navbar</a>-->
+    <a clss="navbar-brand" href="{% url 'home' %}">
+        <img src="{% static 'pweb/images/tag.png' %}" width="50" height="50" class="d-inline-block align-top" alt=""
+             loading="lazy">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'portfolio' %}">My Portfolio</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'birth_chart' %}">Birth-Chart Analysis </a>
+            </li>
+        </ul>
+        <!--    modal button Login  -->
+
+
+</nav>
+
+{% if messages %}
+<center>
+    <div class="messages alert alert-danger alert-dismissible">
+        {% for message in messages %}
+        <div style="color:red;font-size:20spx" class="{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+</center>
+{% endif %}
+{% block content %}
+{% endblock %}
+<hr style="height:2px;border-width:0;color:gray;background-color:green">
+<!--<style>-->
+<!--footer {-->
+<!--    background-color: #100F11;-->
+<!--    text-align: justify;-->
+<!--}-->
+<!--aside {-->
+<!--    background-color: ;-->
+<!--    text-align: center;-->
+<!--}-->
+
+
+<!--</style>-->
+<!-- Footer -->
+<footer class="page-footer font-small stylish-color-dark pt-4">
+    <style>
+footer {
+    background-color: #100F11;
+    text-align: justify;
+}
+aside {
+    background-color: ;
+    text-align: center;
+}
+
+
+
+    </style>
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left">
+
+        <!-- Grid row -->
+        <div class="row">
+
+            <!-- Grid column -->
+            <div class="col-md-4 mx-auto">
+
+                <!-- Content -->
+                <h5 style="color:white" class="font-weight-bold text-uppercase mt-3 mb-4">Touch with Me</h5>
+                <p style="color:white">Welcome to this creative world to increase your knowledge and get your
+                    predictions also.</p>
+
+            </div>
+            <!-- Grid column -->
+
+            <hr class="clearfix w-100 d-md-none">
+
+            <!-- Grid column -->
+            <div class="col-md-2 mx-auto">
+
+                <!-- Links -->
+                <h5 style="color:white" class="font-weight-bold text-uppercase mt-3 mb-4">About Me</h5>
+
+                <ul class="list-unstyled">
+                    <li style="color:white">
+                        Email Address dreamsaurav7373@gmail.com
+                    </li>
+                    <br>
+                    <li style="color:white">
+                        Location Dulikhel Ward no.2
+                    </li>
+                    <br>
+                    <li style="color:white">
+                        Phone Number +977-9843567267
+                    </li>
+
+                </ul>
+
+            </div>
+            <!-- Grid column -->
+
+            <hr class="clearfix w-100 d-md-none">
+            <hr class="clearfix w-100 d-md-none">
+
+            <!-- Grid column -->
+            <div class="col-md-2 mx-auto">
+
+                <!-- Links -->
+                <h5 style="color:white" class="font-weight-bold text-uppercase mt-3 mb-4">My Projects</h5>
+
+                <ul class="list-unstyled">
+                    <li>
+                        <a style="color:white" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <br>
+                    <li>
+                        <a style="color:white" href="{% url 'contact' %}">Contact</a>
+                    </li>
+                    <br>
+                    <li>
+                        <a style="color:white" href="{% url 'portfolio' %}">My Portfolio </a>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+    <div class="container-fluid">
+        <h5 style="color:white" class="font-weight-bold text-uppercase mt-3 mb-4">Privacy and Policies</h5>
+        <small class="text-muted">
+            <p style="color:white">
+                First of all, I want you to be assured that i don't directly contact with you and stores your
+                personal
+                information in our servers, it will be deleted from our servers after i analyze your palm or birth
+                chart. Our system only
+                collect the minimum information required to achieve the purposes i.e. your phone numbers and email
+                for replying your
+                questions regarding to your charts and palm,after i reply i will deleted your information from servers.
+                While using the
+                this Service, i assured you that other users cannot see your activities, all the services are personally
+                treated. Unless your data is kept safe with us. After begin touch with us
+                we cannot play
+                with your data.</p>
+        </small>
+    </div>
+    <!-- Footer Elements -->
+    <div class="container-fluid">
+
+        <!-- Social buttons -->
+
+        <hr style="color:gray;background-color:green">
+        <ul class="list-unstyled list-inline text-center">
+            <li class="list-inline-item">
+                <a class="btn-floating btn-fb mx-1" href="http://www.facebook.com/sauravneupane37">
+                    <img src="{% static 'pweb/images/fb1.svg' %}" width="50" height="50" alt="Saurav">
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a class="btn-floating btn-fb mx-1" href="http://www.twitter.com/saurav7373">
+                    <img src="{% static 'pweb/images/twe.png' %}" width="50" height="50" alt="Saurav">
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a class="btn-floating btn-fb mx-1" href="http://www.instagram.com/sau_neupane">
+                    <img src="{% static 'pweb/images/inn.png' %}" width="50" height="50" alt="Saurav">
+                </a>
+            </li>
+
+        </ul>
+        <!-- Social buttons -->
+
+    </div>
+    <!-- Footer Elements -->
+
+    <!-- Copyright -->
+    <div style="color:green" class="footer-copyright text-center py-3">© All Right Reserved
+        <center><h6> Follow me on social media </h6></center>
+
+    </div>
+
+</footer>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
