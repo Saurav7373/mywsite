@@ -1,0 +1,20 @@
+{% extends 'pweb/nav.html' %}
+
+{% block content %}
+<center>
+    <div class="container">
+
+        <style>
+         .fb_iframe_widget {overflow: hidden;}
+        div.fb-comments.fb_iframe_widget span {margin-bottom: -45px;}
+
+
+        </style>
+
+        <p><b> How you feel about my Perdiction,Leave reviews here. </b></p>
+        <script async crossorigin="anonymous" defer nonce="COvqo6YB"
+                src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0"></script>
+        <div class="fb-comments" data-href="http://127.0.0.1:8000/pweb/birth/" data-numposts="5" data-width=""></div>
+    </div>
+</center>
+{% endblock %}
