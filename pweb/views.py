@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
+
 from .models import Contact, Client, Image
 
 
@@ -15,9 +16,12 @@ def birth(request):
     return render( request, 'pweb/birth.html' )
 
 
+def comment(request):
+    return render( request, 'pweb/comment.html' )
+
+
 def nav(request):
     return render( request, 'pweb/nav.html' )
-
 
 
 def contact(request):
@@ -56,6 +60,10 @@ def client(request):
             messages.error( request, 'Enter valid Phone Numbers.Enter phone number within 10 digits.',
                             extra_tags='alert' )
             return redirect( 'birth_chart' )
+        if len( desc ) > 100:
+            messages.error( request, 'Enter queries within 100 words.',
+                            extra_tags='alert' )
+            return redirect( 'birth_chart' )
 
         cl = Client( gender=gender, name=name, desc=desc, phone=phone, email=email, dob=dob, district=district,
                      pro=pro )
@@ -86,6 +94,9 @@ def images(request):
             messages.error( request, 'Enter valid Phone Numbers.Enter phone number within 10 digits',
                             extra_tags='alert' )
             return redirect( 'birth_chart' )
+        if len( desc ) > 100:
+            messages.error( request, 'Enter queries within 100 words.',
+                            extra_tags='alert' )
 
         im = Image( picture1=p, picture2=p1, name=name, email=email, phone=phone, desc1=desc, dou1=dou )
         im.save()

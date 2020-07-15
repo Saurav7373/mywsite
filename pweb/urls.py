@@ -11,6 +11,7 @@ urlpatterns = [
     path('portfolio/', views.portfolio, name='portfolio'),
     path('home/', views.home, name='home'),
     path('birth/', views.birth,name='birth_chart'),
+    path('comment/', views.comment,name='comment'),
     path('images/', views.images,name='images'),
 
 ]
